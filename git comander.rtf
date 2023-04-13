@@ -1,0 +1,1080 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1046{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang22 NOME\par
+git - o est\'fapido rastreador de conte\'fado\par
+\par
+SINOPSE\par
+git [-v | --vers\'e3o] [-h | --help] [-C <caminho>] [-c <nome>=<valor>]\par
+    [--exec-path[=<caminho>]] [--html-path] [--man-path] [--info-path]\par
+    [-p|--paginate|-P|--no-pager] [--no-replace-objects] [--bare]\par
+    [--git-dir=<caminho>] [--work-tree=<caminho>] [--namespace=<nome>]\par
+    [--config-env=<nome>=<envvar>] <comando> [<args>]\par
+DESCRI\'c7\'c3O\par
+O Git \'e9 um sistema de controle de revis\'e3o r\'e1pido, escal\'e1vel e distribu\'eddo com um conjunto de comandos extraordinariamente rico que fornece opera\'e7\'f5es de alto n\'edvel e acesso total aos internos.\par
+\par
+Consulte o gittutorial[7] para come\'e7ar e, em seguida, consulte o giteveryday[7] para obter um conjunto m\'ednimo \'fatil de comandos. O Git User's Manual tem uma introdu\'e7\'e3o mais aprofundada.\par
+\par
+Depois de dominar os conceitos b\'e1sicos, voc\'ea pode voltar a esta p\'e1gina para aprender quais comandos o Git oferece. Voc\'ea pode aprender mais sobre comandos individuais do Git com "git help command". A p\'e1gina de manual gitcli[7] fornece uma vis\'e3o geral da sintaxe de comando da linha de comando.\par
+\par
+Uma c\'f3pia formatada e com hiperlink da documenta\'e7\'e3o mais recente do Git pode ser visualizada em {{\field{\*\fldinst{HYPERLINK https://git.github.io/htmldocs/git.html }}{\fldrslt{https://git.github.io/htmldocs/git.html\ul0\cf0}}}}\f0\fs22  ou {{\field{\*\fldinst{HYPERLINK https://git-scm.com/docs }}{\fldrslt{https://git-scm.com/docs\ul0\cf0}}}}\f0\fs22  .\par
+\par
+OP\'c7\'d5ES\par
+-v\par
+--vers\'e3o\par
+Imprime a vers\'e3o do pacote Git de onde veio o programa git .\par
+\par
+Esta op\'e7\'e3o \'e9 convertida internamente git version ...e aceita as mesmas op\'e7\'f5es do comando git-version[1] . Se --helptamb\'e9m for fornecido, ter\'e1 preced\'eancia sobre --version.\par
+\par
+-h\par
+--ajuda\par
+Imprime a sinopse e uma lista dos comandos mais usados. Se a op\'e7\'e3o --allou -afor fornecida, todos os comandos dispon\'edveis ser\'e3o impressos. Se um comando Git for nomeado, essa op\'e7\'e3o abrir\'e1 a p\'e1gina de manual desse comando.\par
+\par
+Outras op\'e7\'f5es est\'e3o dispon\'edveis para controlar como a p\'e1gina de manual \'e9 exibida. Consulte git-help[1] para obter mais informa\'e7\'f5es, porque git --help ...\'e9 convertido internamente em arquivos git help ....\par
+\par
+-C <caminho>\par
+Execute como se o git tivesse sido iniciado em <path> em vez do diret\'f3rio de trabalho atual. Quando v\'e1rias -Cop\'e7\'f5es s\'e3o fornecidas, cada n\'e3o absoluto subsequente -C <path>\'e9 interpretado em rela\'e7\'e3o ao precedente -C <path>. Se <path> estiver presente, mas vazio, por exemplo -C "", o diret\'f3rio de trabalho atual n\'e3o ser\'e1 alterado.\par
+\par
+Esta op\'e7\'e3o afeta op\'e7\'f5es que esperam nome de caminho como --git-dire --work-treeem que suas interpreta\'e7\'f5es dos nomes de caminho seriam feitas em rela\'e7\'e3o ao diret\'f3rio de trabalho causado pela -Cop\'e7\'e3o. Por exemplo, as seguintes invoca\'e7\'f5es s\'e3o equivalentes:\par
+\par
+git --git-dir=a.git --work-tree=b -C c status\par
+git --git-dir=c/a.git --work-tree=c/b status\par
+-c <nome>=<valor>\par
+Passe um par\'e2metro de configura\'e7\'e3o para o comando. O valor fornecido substituir\'e1 os valores dos arquivos de configura\'e7\'e3o. O <name> \'e9 esperado no mesmo formato listado por git config (subchaves separadas por pontos).\par
+\par
+Observe que omitir o =in git -c foo.bar ...\'e9 permitido e define foo.baro valor booleano verdadeiro (como [foo]barfaria em um arquivo de configura\'e7\'e3o). Incluir o igual, mas com um valor vazio (como git -c foo.bar= ...) define foo.bara string vazia que git config --type=boolser\'e1 convertida em false.\par
+\par
+--config-env=<nome>=<envvar>\par
+Como -c <name>=<value>, d\'ea um valor \'e0 vari\'e1vel de configura\'e7\'e3o <name> , em que <envvar> \'e9 o nome de uma vari\'e1vel de ambiente da qual recuperar o valor. Ao contr\'e1rio de -cn\'e3o haver atalho para definir diretamente o valor para uma string vazia, em vez disso, a pr\'f3pria vari\'e1vel de ambiente deve ser definida para a string vazia. \'c9 um erro se o <envvar>n\'e3o existir no ambiente. <envvar>pode n\'e3o conter um sinal de igual para evitar ambig\'fcidade ao <name>conter um.\par
+\par
+Isso \'e9 \'fatil para casos em que voc\'ea deseja passar op\'e7\'f5es de configura\'e7\'e3o transit\'f3rias para o git, mas est\'e1 fazendo isso em sistemas operacionais onde outros processos podem ler sua linha de comando (por exemplo, ), /proc/self/cmdlinemas n\'e3o seu ambiente (por exemplo, /proc/self/environ). Esse comportamento \'e9 o padr\'e3o no Linux, mas pode n\'e3o estar no seu sistema.\par
+\par
+Observe que isso pode adicionar seguran\'e7a para vari\'e1veis \u8203?\u8203?como http.extraHeaderonde as informa\'e7\'f5es confidenciais fazem parte do valor, mas n\'e3o, por exemplo, url.<base>.insteadOfonde as informa\'e7\'f5es confidenciais podem fazer parte da chave.\par
+\par
+--exec-path[=<caminho>]\par
+Caminho para onde quer que seus principais programas Git estejam instalados. Isso tamb\'e9m pode ser controlado definindo a vari\'e1vel de ambiente GIT_EXEC_PATH. Se nenhum caminho for fornecido, o git imprimir\'e1 a configura\'e7\'e3o atual e sair\'e1.\par
+\par
+--caminho-html\par
+Imprima o caminho, sem a barra final, onde a documenta\'e7\'e3o HTML do Git est\'e1 instalada e saia.\par
+\par
+--man-path\par
+Imprima o caminho de manual (consulte Recursos man(1)) para as p\'e1ginas de manual desta vers\'e3o do Git e saia.\par
+\par
+--info-path\par
+Imprima o caminho onde os arquivos Info que documentam esta vers\'e3o do Git est\'e3o instalados e saia.\par
+\par
+-p\par
+--paginar\par
+Canalize toda a sa\'edda para menos (ou se definido, $PAGER) se a sa\'edda padr\'e3o for um terminal. Isso substitui as pager.<cmd> op\'e7\'f5es de configura\'e7\'e3o (consulte a se\'e7\'e3o "Mecanismo de configura\'e7\'e3o" abaixo).\par
+\par
+-P\par
+--no-pager\par
+N\'e3o canalize a sa\'edda do Git para um pager.\par
+\par
+--git-dir=<caminho>\par
+Defina o caminho para o reposit\'f3rio (diret\'f3rio ".git"). Isso tamb\'e9m pode ser controlado definindo a GIT_DIRvari\'e1vel de ambiente. Pode ser um caminho absoluto ou um caminho relativo para o diret\'f3rio de trabalho atual.\par
+\par
+Especificar a localiza\'e7\'e3o do diret\'f3rio ".git" usando esta op\'e7\'e3o (ou GIT_DIRvari\'e1vel de ambiente) desativa a descoberta do reposit\'f3rio que tenta encontrar um diret\'f3rio com o subdiret\'f3rio ".git" (que \'e9 como o reposit\'f3rio e o n\'edvel superior da \'e1rvore de trabalho s\'e3o descobertos) e diz ao Git que voc\'ea est\'e1 no n\'edvel superior da \'e1rvore de trabalho. Se voc\'ea n\'e3o estiver no diret\'f3rio de n\'edvel superior da \'e1rvore de trabalho, dever\'e1 informar ao Git onde est\'e1 o n\'edvel superior da \'e1rvore de trabalho, com a --work-tree=<path>op\'e7\'e3o (ou GIT_WORK_TREE vari\'e1vel de ambiente)\par
+\par
+Se voc\'ea quiser apenas executar o git como se tivesse sido iniciado, <path>use git -C <path>.\par
+\par
+--work-tree=<caminho>\par
+Defina o caminho para a \'e1rvore de trabalho. Pode ser um caminho absoluto ou um caminho relativo ao diret\'f3rio de trabalho atual. Isso tamb\'e9m pode ser controlado definindo a vari\'e1vel de ambiente GIT_WORK_TREE e a vari\'e1vel de configura\'e7\'e3o core.worktree (consulte core.worktree em git-config[1] para uma discuss\'e3o mais detalhada).\par
+\par
+--namespace=<caminho>\par
+Defina o namespace Git. Veja gitnamespaces[7] para mais detalhes. Equivale a definir a GIT_NAMESPACEvari\'e1vel de ambiente.\par
+\par
+--nua\par
+Trate o reposit\'f3rio como um reposit\'f3rio simples. Se o ambiente GIT_DIR n\'e3o estiver definido, ele ser\'e1 definido para o diret\'f3rio de trabalho atual.\par
+\par
+--no-replace-objects\par
+N\'e3o use refer\'eancias de substitui\'e7\'e3o para substituir objetos Git. Veja git-replace[1] para mais informa\'e7\'f5es.\par
+\par
+--literal-pathspecs\par
+Trate pathspecs literalmente (ou seja, sem globbing, sem magia pathspec). Isso \'e9 equivalente a definir a GIT_LITERAL_PATHSPECSvari\'e1vel de ambiente como 1.\par
+\par
+--glob-pathspecs\par
+Adicione a magia "glob" a todos os pathspec. Isso \'e9 equivalente a definir a GIT_GLOB_PATHSPECSvari\'e1vel de ambiente como 1. Desabilitar globbing em pathspecs individuais pode ser feito usando pathspec magic ":(literal)"\par
+\par
+--noglob-pathspecs\par
+Adicione magia "literal" a todos os pathspec. Isso \'e9 equivalente a definir a GIT_NOGLOB_PATHSPECSvari\'e1vel de ambiente como 1. A ativa\'e7\'e3o do globbing em pathspecs individuais pode ser feita usando pathspec magic ":(glob)"\par
+\par
+--icase-pathspecs\par
+Adicione a magia "icase" a todos os pathspec. Isso \'e9 equivalente a definir a GIT_ICASE_PATHSPECSvari\'e1vel de ambiente como 1.\par
+\par
+--no-opcional-locks\par
+N\'e3o execute opera\'e7\'f5es opcionais que exijam bloqueios. Isso \'e9 equivalente a definir o GIT_OPTIONAL_LOCKSpara 0.\par
+\par
+--list-cmds=grupo[,grupo\'85]\par
+Listar comandos por grupo. Esta \'e9 uma op\'e7\'e3o interna/experimental e pode mudar ou ser removida no futuro. Os grupos suportados s\'e3o: builtins, parseopt (comandos internos que usam op\'e7\'f5es de an\'e1lise), main (todos os comandos no diret\'f3rio libexec), outros (todos os outros comandos que $PATHpossuem prefixo git), list-<category> (consulte as categorias em command- list.txt), nohelpers (excluir comandos auxiliares), alias e config (recuperar lista de comandos da vari\'e1vel de configura\'e7\'e3o length.commands)\par
+\par
+COMANDOS GIT\par
+Dividimos o Git em comandos de alto n\'edvel ("porcelana") e comandos de baixo n\'edvel ("encanamento").\par
+\par
+Comandos de alto n\'edvel (porcelana)\par
+Separamos os comandos de porcelana em comandos principais e alguns utilit\'e1rios de usu\'e1rio auxiliares.\par
+\par
+Comandos principais da porcelana\par
+git-add[1]\par
+Adicionar o conte\'fado do arquivo ao \'edndice\par
+\par
+git-am[1]\par
+Aplique uma s\'e9rie de patches de uma caixa de correio\par
+\par
+git-archive[1]\par
+Crie um arquivo de arquivos de uma \'e1rvore nomeada\par
+\par
+git-bisect[1]\par
+Use a pesquisa bin\'e1ria para encontrar o commit que introduziu um bug\par
+\par
+git-branch[1]\par
+Listar, criar ou excluir ramifica\'e7\'f5es\par
+\par
+git-bundle[1]\par
+Mova objetos e refer\'eancias por arquivo\par
+\par
+git-checkout[1]\par
+Troque de ramifica\'e7\'e3o ou restaure os arquivos da \'e1rvore de trabalho\par
+\par
+git-cherry-pick[1]\par
+Aplique as altera\'e7\'f5es introduzidas por alguns commits existentes\par
+\par
+git-citool[1]\par
+Alternativa gr\'e1fica para git-commit\par
+\par
+git-clean[1]\par
+Remova arquivos n\'e3o rastreados da \'e1rvore de trabalho\par
+\par
+git-clone[1]\par
+Clone um reposit\'f3rio em um novo diret\'f3rio\par
+\par
+git-commit[1]\par
+Registrar altera\'e7\'f5es no reposit\'f3rio\par
+\par
+git-describe[1]\par
+D\'ea a um objeto um nome leg\'edvel por humanos com base em uma refer\'eancia dispon\'edvel\par
+\par
+git-diff[1]\par
+Mostrar altera\'e7\'f5es entre commits, commit e \'e1rvore de trabalho, etc\par
+\par
+git-fetch[1]\par
+Baixar objetos e refer\'eancias de outro reposit\'f3rio\par
+\par
+git-format-patch[1]\par
+Preparar patches para envio por e-mail\par
+\par
+git-gc[1]\par
+Limpe arquivos desnecess\'e1rios e otimize o reposit\'f3rio local\par
+\par
+git-grep[1]\par
+Imprimir linhas que correspondem a um padr\'e3o\par
+\par
+git-gui[1]\par
+Uma interface gr\'e1fica port\'e1til para o Git\par
+\par
+git-init[1]\par
+Crie um reposit\'f3rio Git vazio ou reinicie um existente\par
+\par
+git-log[1]\par
+Mostrar logs de confirma\'e7\'e3o\par
+\par
+git-maintenance[1]\par
+Execute tarefas para otimizar os dados do reposit\'f3rio Git\par
+\par
+git-merge[1]\par
+Junte duas ou mais hist\'f3rias de desenvolvimento juntas\par
+\par
+git-mv[1]\par
+Mover ou renomear um arquivo, um diret\'f3rio ou um link simb\'f3lico\par
+\par
+git-notes[1]\par
+Adicionar ou inspecionar notas de objetos\par
+\par
+git-pull[1]\par
+Busque e integre com outro reposit\'f3rio ou uma ramifica\'e7\'e3o local\par
+\par
+git-push[1]\par
+Atualize as refer\'eancias remotas junto com os objetos associados\par
+\par
+git-range-diff[1]\par
+Compare dois intervalos de confirma\'e7\'e3o (por exemplo, duas vers\'f5es de uma ramifica\'e7\'e3o)\par
+\par
+git-rebase[1]\par
+Reaplicar commits em cima de outra ponta base\par
+\par
+git-reset[1]\par
+Redefina o HEAD atual para o estado especificado\par
+\par
+git-restore[1]\par
+Restaurar arquivos da \'e1rvore de trabalho\par
+\par
+git-reverter[1]\par
+Reverter alguns commits existentes\par
+\par
+git-rm[1]\par
+Remover arquivos da \'e1rvore de trabalho e do \'edndice\par
+\par
+git-shortlog[1]\par
+Resumir a sa\'edda do git log\par
+\par
+git-show[1]\par
+Mostrar v\'e1rios tipos de objetos\par
+\par
+git-sparse-checkout[1]\par
+Reduza sua \'e1rvore de trabalho a um subconjunto de arquivos rastreados\par
+\par
+git-stash[1]\par
+Guarde as altera\'e7\'f5es em um diret\'f3rio de trabalho sujo\par
+\par
+git-status[1]\par
+Mostrar o status da \'e1rvore de trabalho\par
+\par
+git-submodule[1]\par
+Inicializar, atualizar ou inspecionar subm\'f3dulos\par
+\par
+git-switch[1]\par
+Alternar ramifica\'e7\'f5es\par
+\par
+git-tag[1]\par
+Crie, liste, exclua ou verifique um objeto de tag assinado com GPG\par
+\par
+git-worktree[1]\par
+Gerenciar v\'e1rias \'e1rvores de trabalho\par
+\par
+gitk[1]\par
+O navegador do reposit\'f3rio Git\par
+\par
+escalar[1]\par
+Uma ferramenta para gerenciar grandes reposit\'f3rios Git\par
+\par
+Comandos Auxiliares\par
+Manipuladores:\par
+\par
+git-config[1]\par
+Obter e definir reposit\'f3rio ou op\'e7\'f5es globais\par
+\par
+git-fast-export[1]\par
+Git exportador de dados\par
+\par
+git-fast-import[1]\par
+Back-end para importadores de dados Git r\'e1pidos\par
+\par
+git-filter-branch[1]\par
+Reescrever ramifica\'e7\'f5es\par
+\par
+git-mergetool[1]\par
+Execute ferramentas de resolu\'e7\'e3o de conflitos de mesclagem para resolver conflitos de mesclagem\par
+\par
+git-pack-refs[1]\par
+Cabe\'e7alhos de embalagem e tags para acesso eficiente ao reposit\'f3rio\par
+\par
+git-prune[1]\par
+Remova todos os objetos inacess\'edveis do banco de dados de objetos\par
+\par
+git-reflog[1]\par
+Gerenciar informa\'e7\'f5es de reflog\par
+\par
+git-remote[1]\par
+Gerenciar conjunto de reposit\'f3rios rastreados\par
+\par
+git-repack[1]\par
+Empacote objetos descompactados em um reposit\'f3rio\par
+\par
+git-replace[1]\par
+Crie, liste, exclua refer\'eancias para substituir objetos\par
+\par
+Interrogadores:\par
+\par
+git-annotate[1]\par
+Anotar linhas de arquivo com informa\'e7\'f5es de confirma\'e7\'e3o\par
+\par
+git-culpa[1]\par
+Mostrar qual revis\'e3o e autor modificou pela \'faltima vez cada linha de um arquivo\par
+\par
+git-bugreport[1]\par
+Colete informa\'e7\'f5es para o usu\'e1rio arquivar um relat\'f3rio de bug\par
+\par
+git-count-objects[1]\par
+Conte o n\'famero descompactado de objetos e seu consumo de disco\par
+\par
+git-diagnose[1]\par
+Gere um arquivo zip de informa\'e7\'f5es de diagn\'f3stico\par
+\par
+git-difftool[1]\par
+Mostrar altera\'e7\'f5es usando ferramentas de compara\'e7\'e3o comuns\par
+\par
+git-fsck[1]\par
+Verifica a conectividade e a validade dos objetos no banco de dados\par
+\par
+git-help[1]\par
+Exibir informa\'e7\'f5es de ajuda sobre o Git\par
+\par
+git-instaweb[1]\par
+Navegue instantaneamente pelo seu reposit\'f3rio de trabalho no gitweb\par
+\par
+git-merge-tree[1]\par
+Execute a mesclagem sem tocar no \'edndice ou na \'e1rvore de trabalho\par
+\par
+git-rerere[1]\par
+Reutilize a resolu\'e7\'e3o gravada de mesclagens em conflito\par
+\par
+git-show-branch[1]\par
+Mostrar branches e seus commits\par
+\par
+git-verify-commit[1]\par
+Verifique a assinatura GPG dos commits\par
+\par
+git-verify-tag[1]\par
+Verifique a assinatura GPG das tags\par
+\par
+git-version[1]\par
+Exibir informa\'e7\'f5es de vers\'e3o sobre o Git\par
+\par
+git-whatchanged[1]\par
+Mostrar logs com a diferen\'e7a que cada commit apresenta\par
+\par
+gitweb[1]\par
+Interface web Git (frontend web para reposit\'f3rios Git)\par
+\par
+Interagindo com os outros\par
+Esses comandos s\'e3o para interagir com SCM estrangeiro e com outras pessoas via patch por e-mail.\par
+\par
+git-archimport[1]\par
+Importar um reposit\'f3rio GNU Arch para o Git\par
+\par
+git-cvsexportcommit[1]\par
+Exportar um \'fanico commit para um check-out CVS\par
+\par
+git-cvsimport[1]\par
+Salve seus dados de outro SCM que as pessoas adoram odiar\par
+\par
+git-cvsserver[1]\par
+Um emulador de servidor CVS para Git\par
+\par
+git-imap-send[1]\par
+Envie uma cole\'e7\'e3o de patches de stdin para uma pasta IMAP\par
+\par
+git-p4[1]\par
+Importar e enviar para reposit\'f3rios Perforce\par
+\par
+git-quiltimport[1]\par
+Aplica um patchset de quilt na ramifica\'e7\'e3o atual\par
+\par
+git-request-pull[1]\par
+Gera um resumo das altera\'e7\'f5es pendentes\par
+\par
+git-enviar-e-mail[1]\par
+Envie uma cole\'e7\'e3o de patches como e-mails\par
+\par
+git-svn[1]\par
+Opera\'e7\'e3o bidirecional entre um reposit\'f3rio Subversion e o Git\par
+\par
+Redefinir, restaurar e reverter\par
+Existem tr\'eas comandos com nomes semelhantes: git reset, git restoree git revert.\par
+\par
+git-revert[1] trata de fazer um novo commit que reverte as altera\'e7\'f5es feitas por outros commits.\par
+\par
+git-restore[1] trata da restaura\'e7\'e3o de arquivos na \'e1rvore de trabalho do \'edndice ou de outro commit. Este comando n\'e3o atualiza sua ramifica\'e7\'e3o. O comando tamb\'e9m pode ser usado para restaurar arquivos no \'edndice de outro commit.\par
+\par
+git-reset[1] trata de atualizar seu branch, movendo a dica para adicionar ou remover commits do branch. Esta opera\'e7\'e3o altera o hist\'f3rico de confirma\'e7\'e3o.\par
+\par
+git resettamb\'e9m pode ser usado para restaurar o \'edndice, sobrepondo-se a git restore.\par
+\par
+Comandos de baixo n\'edvel (encanamento)\par
+Embora o Git inclua sua pr\'f3pria camada de porcelana, seus comandos de baixo n\'edvel s\'e3o suficientes para suportar o desenvolvimento de porcelanas alternativas. Os desenvolvedores de tais porcelanas podem come\'e7ar lendo sobre git-update-index[1] e git-read-tree[1] .\par
+\par
+A interface (entrada, sa\'edda, conjunto de op\'e7\'f5es e sem\'e2ntica) para esses comandos de baixo n\'edvel deve ser muito mais est\'e1vel do que os comandos de n\'edvel Porcelain, porque esses comandos s\'e3o principalmente para uso com script. A interface para os comandos do Porcelain, por outro lado, est\'e1 sujeita a altera\'e7\'f5es para melhorar a experi\'eancia do usu\'e1rio final.\par
+\par
+A descri\'e7\'e3o a seguir divide os comandos de baixo n\'edvel em comandos que manipulam objetos (no reposit\'f3rio, \'edndice e \'e1rvore de trabalho), comandos que interrogam e comparam objetos e comandos que movem objetos e refer\'eancias entre reposit\'f3rios.\par
+\par
+comandos de manipula\'e7\'e3o\par
+git-apply[1]\par
+Aplique um patch aos arquivos e/ou ao \'edndice\par
+\par
+git-checkout-index[1]\par
+Copiar arquivos do \'edndice para a \'e1rvore de trabalho\par
+\par
+git-commit-graph[1]\par
+Gravar e verificar arquivos de gr\'e1fico de confirma\'e7\'e3o do Git\par
+\par
+git-commit-tree[1]\par
+Criar um novo objeto de confirma\'e7\'e3o\par
+\par
+git-hash-object[1]\par
+Calcula o ID do objeto e, opcionalmente, cria um blob a partir de um arquivo\par
+\par
+git-index-pack[1]\par
+Criar arquivo de \'edndice de pacote para um arquivo compactado existente\par
+\par
+git-merge-file[1]\par
+Executar uma mesclagem de arquivos de tr\'eas vias\par
+\par
+git-merge-index[1]\par
+Execute uma mesclagem para arquivos que precisam ser mesclados\par
+\par
+git-mktag[1]\par
+Cria um objeto tag com valida\'e7\'e3o extra\par
+\par
+git-mktree[1]\par
+Crie um objeto de \'e1rvore a partir do texto formatado em \'e1rvore ls\par
+\par
+git-multi-pack-index[1]\par
+Escrever e verificar \'edndices multi-pack\par
+\par
+git-pack-objects[1]\par
+Crie um arquivo compactado de objetos\par
+\par
+git-prune-packed[1]\par
+Remova objetos extras que j\'e1 est\'e3o em arquivos de pacote\par
+\par
+git-read-tree[1]\par
+L\'ea as informa\'e7\'f5es da \'e1rvore no \'edndice\par
+\par
+git-simb\'f3lico-ref[1]\par
+Leia, modifique e exclua refer\'eancias simb\'f3licas\par
+\par
+git-unpack-objects[1]\par
+Descompacte objetos de um arquivo compactado\par
+\par
+git-update-index[1]\par
+Registre o conte\'fado do arquivo na \'e1rvore de trabalho para o \'edndice\par
+\par
+git-update-ref[1]\par
+Atualize o nome do objeto armazenado em uma refer\'eancia com seguran\'e7a\par
+\par
+git-write-tree[1]\par
+Crie um objeto de \'e1rvore a partir do \'edndice atual\par
+\par
+Comandos de interroga\'e7\'e3o\par
+git-cat-file[1]\par
+Forne\'e7a informa\'e7\'f5es de conte\'fado ou tipo e tamanho para objetos de reposit\'f3rio\par
+\par
+git-cherry[1]\par
+Encontrar confirma\'e7\'f5es ainda a serem aplicadas ao upstream\par
+\par
+git-diff-files[1]\par
+Compara arquivos na \'e1rvore de trabalho e no \'edndice\par
+\par
+git-diff-index[1]\par
+Comparar uma \'e1rvore com a \'e1rvore de trabalho ou \'edndice\par
+\par
+git-diff-tree[1]\par
+Compara o conte\'fado e o modo dos blobs encontrados por meio de dois objetos de \'e1rvore\par
+\par
+git-para-cada-ref[1]\par
+Informa\'e7\'f5es de sa\'edda em cada ref\par
+\par
+git-para-cada-repo[1]\par
+Execute um comando Git em uma lista de reposit\'f3rios\par
+\par
+git-get-tar-commit-id[1]\par
+Extrair ID de confirma\'e7\'e3o de um arquivo criado usando git-archive\par
+\par
+git-ls-files[1]\par
+Mostrar informa\'e7\'f5es sobre arquivos no \'edndice e na \'e1rvore de trabalho\par
+\par
+git-ls-remote[1]\par
+Listar refer\'eancias em um reposit\'f3rio remoto\par
+\par
+git-ls-tree[1]\par
+Listar o conte\'fado de um objeto de \'e1rvore\par
+\par
+git-merge-base[1]\par
+Encontre os melhores ancestrais comuns poss\'edveis para uma mesclagem\par
+\par
+git-name-rev[1]\par
+Encontre nomes simb\'f3licos para determinadas rota\'e7\'f5es\par
+\par
+git-pack-redundant[1]\par
+Encontre arquivos de pacote redundantes\par
+\par
+git-rev-list[1]\par
+Lista objetos commit em ordem cronol\'f3gica inversa\par
+\par
+git-rev-parse[1]\par
+Escolher e massagear par\'e2metros\par
+\par
+git-show-index[1]\par
+Mostrar \'edndice de arquivo compactado\par
+\par
+git-show-ref[1]\par
+Listar refer\'eancias em um reposit\'f3rio local\par
+\par
+git-unpack-file[1]\par
+Cria um arquivo tempor\'e1rio com o conte\'fado de um blob\par
+\par
+git-var[1]\par
+Mostrar uma vari\'e1vel l\'f3gica do Git\par
+\par
+git-verify-pack[1]\par
+Validar arquivos Git compactados\par
+\par
+Em geral, os comandos de interroga\'e7\'e3o n\'e3o tocam nos arquivos da \'e1rvore de trabalho.\par
+\par
+Sincronizando reposit\'f3rios\par
+git-daemon[1]\par
+Um servidor realmente simples para reposit\'f3rios Git\par
+\par
+git-fetch-pack[1]\par
+Receber objetos ausentes de outro reposit\'f3rio\par
+\par
+git-http-backend[1]\par
+Implementa\'e7\'e3o do lado do servidor do Git sobre HTTP\par
+\par
+git-send-pack[1]\par
+Envie objetos pelo protocolo Git para outro reposit\'f3rio\par
+\par
+git-update-server-info[1]\par
+Atualize o arquivo de informa\'e7\'f5es auxiliares para ajudar os servidores burros\par
+\par
+A seguir est\'e3o os comandos auxiliares usados \u8203?\u8203?pelo acima; os usu\'e1rios finais geralmente n\'e3o os usam diretamente.\par
+\par
+git-http-fetch[1]\par
+Baixe de um reposit\'f3rio Git remoto via HTTP\par
+\par
+git-http-push[1]\par
+Enviar objetos por HTTP/DAV para outro reposit\'f3rio\par
+\par
+git-receive-pack[1]\par
+Receber o que \'e9 enviado para o reposit\'f3rio\par
+\par
+git-shell[1]\par
+Shell de login restrito para acesso SSH somente Git\par
+\par
+git-upload-archive[1]\par
+Enviar arquivo de volta para git-archive\par
+\par
+git-upload-pack[1]\par
+Enviar objetos compactados de volta para git-fetch-pack\par
+\par
+Comandos auxiliares internos\par
+Esses s\'e3o comandos auxiliares internos usados \u8203?\u8203?por outros comandos; os usu\'e1rios finais geralmente n\'e3o os usam diretamente.\par
+\par
+git-check-attr[1]\par
+Exibir informa\'e7\'f5es gitattributes\par
+\par
+git-check-ignore[1]\par
+Depurar gitignore/excluir arquivos\par
+\par
+git-check-mailmap[1]\par
+Mostrar nomes can\'f4nicos e endere\'e7os de e-mail de contatos\par
+\par
+git-check-ref-format[1]\par
+Garante que um nome de refer\'eancia seja bem formado\par
+\par
+git-column[1]\par
+Exibir dados em colunas\par
+\par
+git-credential[1]\par
+Recupere e armazene as credenciais do usu\'e1rio\par
+\par
+git-credential-cache[1]\par
+Ajudante para armazenar senhas temporariamente na mem\'f3ria\par
+\par
+git-credential-store[1]\par
+Auxiliar para armazenar credenciais em disco\par
+\par
+git-fmt-merge-msg[1]\par
+Produzir uma mensagem de confirma\'e7\'e3o de mesclagem\par
+\par
+git-hook[1]\par
+Executar git hooks\par
+\par
+git-interpret-trailers[1]\par
+Adicionar ou analisar informa\'e7\'f5es estruturadas em mensagens de confirma\'e7\'e3o\par
+\par
+git-mailinfo[1]\par
+Extrai patch e autoria de uma \'fanica mensagem de e-mail\par
+\par
+git-mailsplit[1]\par
+Programa divisor mbox UNIX simples\par
+\par
+git-merge-one-file[1]\par
+O programa auxiliar padr\'e3o para usar com git-merge-index\par
+\par
+git-patch-id[1]\par
+Calcular ID exclusivo para um patch\par
+\par
+git-sh-i18n[1]\par
+C\'f3digo de configura\'e7\'e3o i18n do Git para scripts de shell\par
+\par
+git-sh-setup[1]\par
+C\'f3digo de configura\'e7\'e3o de script de shell Git comum\par
+\par
+git-stripspace[1]\par
+Remova os espa\'e7os em branco desnecess\'e1rios\par
+\par
+Guias\par
+As p\'e1ginas de documenta\'e7\'e3o a seguir s\'e3o guias sobre os conceitos do Git.\par
+\par
+gitcore-tutorial[7]\par
+Um tutorial principal do Git para desenvolvedores\par
+\par
+gitcredentials[7]\par
+Fornecendo nomes de usu\'e1rios e senhas para o Git\par
+\par
+gitcvs-migration[7]\par
+Git para usu\'e1rios do CVS\par
+\par
+gitdiffcore[7]\par
+Ajustando a sa\'edda do diferencial\par
+\par
+giteday[7]\par
+Um conjunto m\'ednimo \'fatil de comandos para o Everyday Git\par
+\par
+gitfaq[7]\par
+Perguntas frequentes sobre o uso do Git\par
+\par
+gitgloss\'e1rio[7]\par
+Um gloss\'e1rio do Git\par
+\par
+gitnamespaces[7]\par
+Git namespaces\par
+\par
+gitremote-helpers[7]\par
+Programas auxiliares para interagir com reposit\'f3rios remotos\par
+\par
+gitsubmodules[7]\par
+Montando um reposit\'f3rio dentro de outro\par
+\par
+gittutorial[7]\par
+Um tutorial de introdu\'e7\'e3o ao Git\par
+\par
+gittutorial-2[7]\par
+Um tutorial de introdu\'e7\'e3o ao Git: parte dois\par
+\par
+gitworkflows[7]\par
+Uma vis\'e3o geral dos fluxos de trabalho recomendados com o Git\par
+\par
+Interfaces de reposit\'f3rio, comando e arquivo\par
+Esta documenta\'e7\'e3o discute as interfaces de reposit\'f3rio e comando com as quais os usu\'e1rios devem interagir diretamente. Veja --user-formatsem git-help[1] para mais detalhes sobre os crit\'e9rios.\par
+\par
+gitatributos[5]\par
+Definindo atributos por caminho\par
+\par
+gitcli[7]\par
+Interface de linha de comando e conven\'e7\'f5es do Git\par
+\par
+githooks[5]\par
+Ganchos usados \u8203?\u8203?pelo Git\par
+\par
+gitignore[5]\par
+Especifica arquivos intencionalmente n\'e3o rastreados a serem ignorados\par
+\par
+gitmailmap[5]\par
+Mapear nomes de autor/committer e/ou endere\'e7os de e-mail\par
+\par
+gitmodules[5]\par
+Definindo as propriedades do subm\'f3dulo\par
+\par
+gitrepository-layout[5]\par
+Layout do reposit\'f3rio Git\par
+\par
+gitrevisions[7]\par
+Especificando revis\'f5es e intervalos para Git\par
+\par
+Formatos de arquivo, protocolos e outras interfaces de desenvolvedor\par
+Esta documenta\'e7\'e3o discute formatos de arquivo, protocolos over-the-wire e outras interfaces de desenvolvedor git. Veja --developer-interfacesem git-help[1] .\par
+\par
+gitformat-bundle[5]\par
+O formato de arquivo de pacote\par
+\par
+gitformat-chunk[5]\par
+Formatos de arquivo baseados em peda\'e7os\par
+\par
+gitformat-commit-graph[5]\par
+Formato gr\'e1fico de confirma\'e7\'e3o do Git\par
+\par
+gitformat-index[5]\par
+Formato de \'edndice Git\par
+\par
+gitformat-pack[5]\par
+Formato do pacote Git\par
+\par
+assinatura-gitformat[5]\par
+Git formatos de assinatura criptogr\'e1fica\par
+\par
+capacidades do gitprotocol[5]\par
+Recursos do protocolo v0 e v1\par
+\par
+gitprotocol-common[5]\par
+Coisas comuns a v\'e1rios protocolos\par
+\par
+gitprotocol-http[5]\par
+Git protocolos baseados em HTTP\par
+\par
+gitprotocol-pack[5]\par
+Como os pacotes s\'e3o transferidos por fio\par
+\par
+gitprotocol-v2[5]\par
+Protocolo Git Wire, vers\'e3o 2\par
+\par
+Mecanismo de configura\'e7\'e3o\par
+O Git usa um formato de texto simples para armazenar personaliza\'e7\'f5es por reposit\'f3rio e por usu\'e1rio. Tal arquivo de configura\'e7\'e3o pode se parecer com isto:\par
+\par
+#\par
+# Um '#' ou ';' caractere indica um coment\'e1rio.\par
+#\par
+\par
+; vari\'e1veis \u8203?\u8203?principais\par
+[essencial]\par
+\tab ; N\'e3o confie nos modos de arquivo\par
+\tab modo de arquivo = falso\par
+\par
+; identidade do usu\'e1rio\par
+[do utilizador]\par
+\tab nome = "J\'fanio C Hamano"\par
+\tab email = "gitster@pobox.com"\par
+V\'e1rios comandos l\'eaem o arquivo de configura\'e7\'e3o e ajustam sua opera\'e7\'e3o de acordo. Consulte git-config[1] para obter uma lista e mais detalhes sobre o mecanismo de configura\'e7\'e3o.\par
+\par
+Terminologia do identificador\par
+<objeto>\par
+Indica o nome do objeto para qualquer tipo de objeto.\par
+\par
+<blob>\par
+Indica um nome de objeto blob.\par
+\par
+<\'e1rvore>\par
+Indica um nome de objeto de \'e1rvore.\par
+\par
+<comprometer>\par
+Indica um nome de objeto de confirma\'e7\'e3o.\par
+\par
+<\'e1rvore-ish>\par
+Indica um nome de objeto de \'e1rvore, commit ou tag. Um comando que recebe um argumento <tree-ish> deseja, em \'faltima inst\'e2ncia, operar em um objeto <tree>, mas desreferencia automaticamente os objetos <commit> e <tag> que apontam para uma <tree>.\par
+\par
+<commit-ish>\par
+Indica um nome de objeto de confirma\'e7\'e3o ou tag. Um comando que recebe um argumento <commit-ish> deseja operar em um objeto <commit>, mas desreferencia automaticamente objetos <tag> que apontam para um <commit>.\par
+\par
+<tipo>\par
+Indica que um tipo de objeto \'e9 necess\'e1rio. Atualmente um dos seguintes: blob, tree, commitou tag.\par
+\par
+<arquivo>\par
+Indica um nome de arquivo - quase sempre relativo \'e0 raiz da \'e1rvore que a estrutura GIT_INDEX_FILEdescreve.\par
+\par
+Identificadores Simb\'f3licos\par
+Qualquer comando do Git que aceite qualquer <objeto> tamb\'e9m pode usar a seguinte nota\'e7\'e3o simb\'f3lica:\par
+\par
+CABE\'c7A\par
+indica o cabe\'e7alho da ramifica\'e7\'e3o atual.\par
+\par
+<etiqueta>\par
+um nome de tag v\'e1lido (ou seja, uma refs/tags/<tag>refer\'eancia).\par
+\par
+<cabe\'e7a>\par
+um nome principal v\'e1lido (ou seja, uma refs/heads/<head>refer\'eancia).\par
+\par
+Para obter uma lista mais completa de maneiras de soletrar nomes de objetos, consulte a se\'e7\'e3o "ESPECIFICAR REVIS\'d5ES" em gitrevisions[7] .\par
+\par
+Estrutura de arquivos/diret\'f3rios\par
+Consulte o documento gitrepository-layout[5] .\par
+\par
+Leia githooks[5] para mais detalhes sobre cada gancho.\par
+\par
+Os SCMs de n\'edvel superior podem fornecer e gerenciar informa\'e7\'f5es adicionais no arquivo $GIT_DIR.\par
+\par
+Terminologia\par
+Consulte o gitglossary[7] .\par
+\par
+vari\'e1veis \u8203?\u8203?ambientais\par
+V\'e1rios comandos do Git prestam aten\'e7\'e3o \'e0s vari\'e1veis \u8203?\u8203?de ambiente e mudam seu comportamento. As vari\'e1veis \u8203?\u8203?de ambiente marcadas como "Boolean" assumem seus valores da mesma forma que as vari\'e1veis \u8203?\u8203?de configura\'e7\'e3o com valor booleano, por exemplo, "true", "yes", "on" e n\'fameros positivos s\'e3o considerados "yes".\par
+\par
+Aqui est\'e3o as vari\'e1veis:\par
+\par
+O reposit\'f3rio Git\par
+Essas vari\'e1veis \u8203?\u8203?de ambiente se aplicam a todos os comandos principais do Git. Nb: vale a pena notar que eles podem ser usados/substitu\'eddos pelo SCMS acima do Git, ent\'e3o tome cuidado ao usar um front-end estrangeiro.\par
+\par
+GIT_INDEX_FILE\par
+Essa vari\'e1vel de ambiente especifica um arquivo de \'edndice alternativo. Se n\'e3o especificado, o padr\'e3o $GIT_DIR/index \'e9 usado.\par
+\par
+GIT_INDEX_VERSION\par
+Essa vari\'e1vel de ambiente especifica qual vers\'e3o do \'edndice \'e9 usada ao gravar o arquivo de \'edndice. Isso n\'e3o afetar\'e1 os arquivos de \'edndice existentes. Por padr\'e3o, a vers\'e3o 2 ou 3 do arquivo de \'edndice \'e9 usada. Veja git-update-index[1] para mais informa\'e7\'f5es.\par
+\par
+GIT_OBJECT_DIRECTORY\par
+Se o diret\'f3rio de armazenamento do objeto for especificado por meio dessa vari\'e1vel de ambiente, os diret\'f3rios sha1 ser\'e3o criados abaixo - caso contr\'e1rio, o $GIT_DIR/objects diret\'f3rio padr\'e3o ser\'e1 usado.\par
+\par
+GIT_ALTERNATE_OBJECT_DIRECTORIES\par
+Devido \'e0 natureza imut\'e1vel dos objetos Git, objetos antigos podem ser arquivados em diret\'f3rios compartilhados somente leitura. Esta vari\'e1vel especifica uma lista separada por ":" (no Windows ";" separada) de diret\'f3rios de objetos Git que podem ser usados \u8203?\u8203?para procurar objetos Git. Novos objetos n\'e3o ser\'e3o gravados nesses diret\'f3rios.\par
+\par
+As entradas que come\'e7am com "(aspas duplas) ser\'e3o interpretadas como caminhos entre aspas no estilo C, removendo as aspas duplas iniciais e finais e respeitando os escapes de barra invertida. Por exemplo, o valor "path-with-\\"-and-:-in-it":vanilla-pathtem dois caminhos: path-with-"-and-:-in-ite vanilla-path.\par
+\par
+GIT_DIR\par
+Se a GIT_DIRvari\'e1vel de ambiente for definida, ela especifica um caminho a ser usado em vez do padr\'e3o .git para a base do reposit\'f3rio. A --git-dirop\'e7\'e3o de linha de comando tamb\'e9m define esse valor.\par
+\par
+GIT_WORK_TREE\par
+Defina o caminho para a raiz da \'e1rvore de trabalho. Isso tamb\'e9m pode ser controlado pela --work-treeop\'e7\'e3o de linha de comando e pela vari\'e1vel de configura\'e7\'e3o core.worktree.\par
+\par
+GIT_NAMESPACE\par
+Defina o namespace Git; veja gitnamespaces[7] para detalhes. A --namespaceop\'e7\'e3o de linha de comando tamb\'e9m define esse valor.\par
+\par
+GIT_CEILING_DIRECTORIES\par
+Esta deve ser uma lista de caminhos absolutos separados por dois pontos. Se definido, \'e9 uma lista de diret\'f3rios que o Git n\'e3o deve acessar enquanto procura um diret\'f3rio de reposit\'f3rio (\'fatil para excluir diret\'f3rios de rede de carregamento lento). Ele n\'e3o excluir\'e1 o diret\'f3rio de trabalho atual ou um GIT_DIR definido na linha de comando ou no ambiente. Normalmente, o Git tem que ler as entradas nesta lista e resolver qualquer link simb\'f3lico que possa estar presente para compar\'e1-los com o diret\'f3rio atual. No entanto, mesmo que esse acesso seja lento, voc\'ea pode adicionar uma entrada vazia \'e0 lista para informar ao Git que as entradas subsequentes n\'e3o s\'e3o links simb\'f3licos e n\'e3o precisam ser resolvidas; por exemplo, GIT_CEILING_DIRECTORIES=/maybe/symlink::/very/slow/non/symlink.\par
+\par
+GIT_DISCOVERY_ACROSS_FILESYSTEM\par
+Quando executado em um diret\'f3rio que n\'e3o possui o diret\'f3rio de reposit\'f3rio ".git", o Git tenta encontrar tal diret\'f3rio nos diret\'f3rios pai para localizar o topo da \'e1rvore de trabalho, mas por padr\'e3o ele n\'e3o cruza os limites do sistema de arquivos. Essa vari\'e1vel de ambiente booleana pode ser definida como true para dizer ao Git para n\'e3o parar nos limites do sistema de arquivos. Como GIT_CEILING_DIRECTORIES, isso n\'e3o afetar\'e1 um diret\'f3rio de reposit\'f3rio expl\'edcito definido por meio GIT_DIRou na linha de comando.\par
+\par
+GIT_COMMON_DIR\par
+Se esta vari\'e1vel for definida como um caminho, os arquivos que n\'e3o s\'e3o da \'e1rvore de trabalho que normalmente est\'e3o em $GIT_DIR ser\'e3o retirados desse caminho. Arquivos espec\'edficos da \'e1rvore de trabalho, como HEAD ou \'edndice, s\'e3o obtidos de $GIT_DIR. Consulte gitrepository-layout[5] e git-worktree[1] para obter detalhes. Esta vari\'e1vel tem menor preced\'eancia do que outras vari\'e1veis \u8203?\u8203?de caminho, como GIT_INDEX_FILE, GIT_OBJECT_DIRECTORY\'85\u8203?\par
+\par
+GIT_DEFAULT_HASH\par
+Se essa vari\'e1vel for definida, o algoritmo de hash padr\'e3o para novos reposit\'f3rios ser\'e1 definido com esse valor. Esse valor \'e9 atualmente ignorado durante a clonagem; a configura\'e7\'e3o do reposit\'f3rio remoto \'e9 usada em seu lugar. O padr\'e3o \'e9 "sha1". ESTA VARI\'c1VEL \'c9 EXPERIMENTAL! Veja --object-formatem git-init[1] .\par
+\par
+Commits do Git\par
+GIT_AUTHOR_NAME\par
+O nome leg\'edvel usado na identidade do autor ao criar objetos commit ou tag, ou ao escrever reflogs. Substitui as defini\'e7\'f5es de configura\'e7\'e3o user.namee author.name.\par
+\par
+GIT_AUTHOR_EMAIL\par
+O endere\'e7o de e-mail usado na identidade do autor ao criar objetos commit ou tag, ou ao escrever reflogs. Substitui as defini\'e7\'f5es de configura\'e7\'e3o user.emaile author.email.\par
+\par
+GIT_AUTHOR_DATE\par
+A data usada para a identidade do autor ao criar objetos commit ou tag, ou ao escrever reflogs. Veja git-commit[1] para formatos v\'e1lidos.\par
+\par
+GIT_COMMITTER_NAME\par
+O nome leg\'edvel usado na identidade do committer ao criar objetos commit ou tag, ou ao escrever reflogs. Substitui as defini\'e7\'f5es de configura\'e7\'e3o user.namee committer.name.\par
+\par
+GIT_COMMITTER_EMAIL\par
+O endere\'e7o de e-mail usado na identidade do autor ao criar objetos commit ou tag, ou ao escrever reflogs. Substitui as defini\'e7\'f5es de configura\'e7\'e3o user.emaile committer.email.\par
+\par
+GIT_COMMITTER_DATE\par
+A data usada para a identidade do committer ao criar objetos commit ou tag, ou ao escrever reflogs. Veja git-commit[1] para formatos v\'e1lidos.\par
+\par
+EMAIL\par
+O endere\'e7o de e-mail usado nas identidades do autor e do committer se nenhuma outra vari\'e1vel de ambiente relevante ou defini\'e7\'e3o de configura\'e7\'e3o tiver sido definida.\par
+\par
+Git Diffs\par
+GIT_DIFF_OPTS\par
+A \'fanica configura\'e7\'e3o v\'e1lida \'e9 "--unified=??" ou "-u??" para definir o n\'famero de linhas de contexto mostradas quando um diff unificado \'e9 criado. Isso tem preced\'eancia sobre qualquer valor de op\'e7\'e3o "-U" ou "--unified" passado na linha de comando diff do Git.\par
+\par
+GIT_EXTERNAL_DIFF\par
+Quando a vari\'e1vel de ambiente GIT_EXTERNAL_DIFF\'e9 definida, o programa nomeado por ela \'e9 chamado para gerar diffs, e o Git n\'e3o usa seu maquin\'e1rio de diff integrado. Para um caminho que \'e9 adicionado, removido ou modificado, GIT_EXTERNAL_DIFF\'e9 chamado com 7 par\'e2metros:\par
+\par
+caminho arquivo antigo hex antigo modo novo arquivo novo hex novo modo\par
+onde:\par
+\par
+<antigo|novo>-arquivo\par
+s\'e3o arquivos que GIT_EXTERNAL_DIFF pode usar para ler o conte\'fado de <antigo|novo>,\par
+\par
+<antigo|novo>-hex\par
+s\'e3o os hashes SHA-1 de 40 hexd\'edgitos,\par
+\par
+<antigo|novo>-modo\par
+s\'e3o a representa\'e7\'e3o octal dos modos de arquivo.\par
+\par
+Os par\'e2metros do arquivo podem apontar para o arquivo de trabalho do usu\'e1rio (por exemplo new-file, em "git-diff-files") /dev/null(por exemplo old-file , quando um novo arquivo \'e9 adicionado) ou um arquivo tempor\'e1rio (por exemplo, old-fileno \'edndice). GIT_EXTERNAL_DIFFn\'e3o deve se preocupar em desvincular o arquivo tempor\'e1rio \f1\emdash  ele \f0\'e9 removido ao GIT_EXTERNAL_DIFFsair.\par
+\par
+Para um caminho n\'e3o mesclado, GIT_EXTERNAL_DIFF\'e9 chamado com 1 par\'e2metro, <caminho>.\par
+\par
+Para cada caminho GIT_EXTERNAL_DIFF\'e9 chamado, duas vari\'e1veis \u8203?\u8203?de ambiente GIT_DIFF_PATH_COUNTERe GIT_DIFF_PATH_TOTALs\'e3o definidas.\par
+\par
+GIT_DIFF_PATH_COUNTER\par
+Um contador baseado em 1 incrementado em um para cada caminho.\par
+\par
+GIT_DIFF_PATH_TOTAL\par
+O n\'famero total de caminhos.\par
+\par
+outro\par
+GIT_MERGE_VERBOSITY\par
+Um n\'famero que controla a quantidade de sa\'edda mostrada pela estrat\'e9gia de mesclagem recursiva. Substitui merge.verbosity. Veja git-merge[1]\par
+\par
+GIT_PAGER\par
+Essa vari\'e1vel de ambiente substitui $PAGER. Se for definido como uma string vazia ou com o valor "cat", o Git n\'e3o iniciar\'e1 um pager. Veja tamb\'e9m a core.pagerop\'e7\'e3o em git-config[1] .\par
+\par
+GIT_PROGRESS_DELAY\par
+Um n\'famero que controla quantos segundos atrasar antes de mostrar indicadores de progresso opcionais. O padr\'e3o \'e9 2.\par
+\par
+GIT_EDITOR\par
+Essa vari\'e1vel de ambiente substitui $EDITORe $VISUAL. Ele \'e9 usado por v\'e1rios comandos do Git quando, no modo interativo, um editor deve ser iniciado. Veja tamb\'e9m git-var[1] e a core.editorop\'e7\'e3o em git-config[1] .\par
+\par
+GIT_SEQUENCE_EDITOR\par
+Essa vari\'e1vel de ambiente substitui o editor Git configurado ao editar a lista de tarefas de um rebase interativo. Veja tamb\'e9m git-rebase[1] e a sequence.editorop\'e7\'e3o em git-config[1] .\par
+\par
+GIT_SSH\par
+GIT_SSH_COMMAND\par
+Se qualquer uma dessas vari\'e1veis \u8203?\u8203?de ambiente for definida, git fetch e git push usar\'e3o o comando especificado em vez de ssh quando precisarem se conectar a um sistema remoto. Os par\'e2metros de linha de comando passados \u8203?\u8203?para o comando configurado s\'e3o determinados pela variante ssh. Consulte ssh.varianta op\'e7\'e3o em git-config[1] para obter detalhes.\par
+\par
+$GIT_SSH_COMMANDtem preced\'eancia sobre $GIT_SSH, e \'e9 interpretado pelo shell, o que permite a inclus\'e3o de argumentos adicionais. $GIT_SSHpor outro lado, deve ser apenas o caminho para um programa (que pode ser um script de shell wrapper, se forem necess\'e1rios argumentos adicionais).\par
+\par
+Normalmente \'e9 mais f\'e1cil configurar quaisquer op\'e7\'f5es desejadas atrav\'e9s do seu .ssh/configarquivo pessoal. Consulte a documenta\'e7\'e3o do ssh para obter mais detalhes.\par
+\par
+GIT_SSH_VARIANT\par
+Se esta vari\'e1vel de ambiente for definida, ela substitui a autodetec\'e7\'e3o do Git se GIT_SSH/ GIT_SSH_COMMAND/ core.sshCommandrefere-se a OpenSSH, plink ou tortoiseplink. Esta vari\'e1vel substitui a defini\'e7\'e3o de configura\'e7\'e3o ssh.variantque serve ao mesmo prop\'f3sito.\par
+\par
+GIT_SSL_NO_VERIFY\par
+Definir e exportar essa vari\'e1vel de ambiente para qualquer valor informa ao Git para n\'e3o verificar o certificado SSL ao buscar ou enviar por HTTPS.\par
+\par
+GIT_ASKPASS\par
+Se esta vari\'e1vel de ambiente for definida, os comandos Git que precisam adquirir senhas ou frases secretas (por exemplo, para autentica\'e7\'e3o HTTP ou IMAP) chamar\'e3o este programa com um prompt adequado como argumento de linha de comando e ler\'e3o a senha de seu STDOUT. Veja tamb\'e9m a core.askPass op\'e7\'e3o em git-config[1] .\par
+\par
+GIT_TERMINAL_PROMPT\par
+Se esta vari\'e1vel de ambiente booleana for definida como false, o git n\'e3o ser\'e1 solicitado no terminal (por exemplo, ao solicitar autentica\'e7\'e3o HTTP).\par
+\par
+GIT_CONFIG_GLOBAL\par
+GIT_CONFIG_SYSTEM\par
+Obtenha a configura\'e7\'e3o dos arquivos fornecidos em vez dos arquivos de configura\'e7\'e3o globais ou no n\'edvel do sistema. Se GIT_CONFIG_SYSTEMestiver definido, o arquivo de configura\'e7\'e3o do sistema definido no momento da compila\'e7\'e3o (geralmente /etc/gitconfig) n\'e3o ser\'e1 lido. Da mesma forma, se GIT_CONFIG_GLOBALfor definido, nem $HOME/.gitconfignem $XDG_CONFIG_HOME/git/configser\'e1 lido. Pode ser configurado para /dev/nullignorar a leitura dos arquivos de configura\'e7\'e3o do respectivo n\'edvel.\par
+\par
+GIT_CONFIG_NOSYSTEM\par
+Se as configura\'e7\'f5es de leitura do $(prefix)/etc/gitconfigarquivo de todo o sistema devem ser ignoradas. Essa vari\'e1vel de ambiente booleana pode ser usada junto com $HOMEe $XDG_CONFIG_HOMEpara criar um ambiente previs\'edvel para um script exigente, ou voc\'ea pode defini-la como true para evitar temporariamente o uso de um /etc/gitconfigarquivo com bugs enquanto espera por algu\'e9m com permiss\'f5es suficientes para corrigi-lo.\par
+\par
+GIT_FLUSH\par
+Se esta vari\'e1vel de ambiente for definida como "1", comandos como gitculpe (no modo incremental), git rev-list , git log , git check-attr e git check-ignore for\'e7ar\'e3o uma descarga do fluxo de sa\'edda ap\'f3s cada registro foram liberados. Se esta vari\'e1vel for definida como "0", a sa\'edda desses comandos ser\'e1 feita usando I/O completamente em buffer. Se essa vari\'e1vel de ambiente n\'e3o for definida, o Git escolher\'e1 a descarga em buffer ou orientada a registro com base em se stdout parece ser redirecionado para um arquivo ou n\'e3o.\par
+\par
+GIT_TRACE\par
+Habilita mensagens de rastreamento gerais, por exemplo, expans\'e3o de alias, execu\'e7\'e3o de comando interno e execu\'e7\'e3o de comando externo.\par
+\par
+Se esta vari\'e1vel for definida como "1", "2" ou "verdadeiro" (a compara\'e7\'e3o n\'e3o diferencia mai\'fasculas de min\'fasculas), as mensagens de rastreamento ser\'e3o impressas em stderr.\par
+\par
+Se a vari\'e1vel for definida como um valor inteiro maior que 2 e menor que 10 (estritamente), o Git interpretar\'e1 esse valor como um descritor de arquivo aberto e tentar\'e1 gravar as mensagens de rastreamento nesse descritor de arquivo.\par
+\par
+Como alternativa, se a vari\'e1vel for definida como um caminho absoluto (come\'e7ando com um caractere / ), o Git interpretar\'e1 isso como um caminho de arquivo e tentar\'e1 anexar as mensagens de rastreamento a ele.\par
+\par
+Desativar a vari\'e1vel ou defini-la como vazia, "0" ou "falso" (sem distin\'e7\'e3o entre mai\'fasculas e min\'fasculas) desativa as mensagens de rastreamento.\par
+\par
+GIT_TRACE_FSMONITOR\par
+Ativa as mensagens de rastreamento para a extens\'e3o do monitor do sistema de arquivos. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_PACK_ACCESS\par
+Habilita mensagens de rastreamento para todos os acessos a qualquer pacote. Para cada acesso, o nome do arquivo do pacote e um deslocamento no pacote s\'e3o registrados. Isso pode ser \'fatil para solucionar alguns problemas de desempenho relacionados ao pacote. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_PACKET\par
+Habilita mensagens de rastreamento para todos os pacotes que entram ou saem de um determinado programa. Isso pode ajudar na depura\'e7\'e3o da negocia\'e7\'e3o de objetos ou em outros problemas de protocolo. O rastreamento \'e9 desativado em um pacote que come\'e7a com "PACK" (mas veja GIT_TRACE_PACKFILEabaixo). Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_PACKFILE\par
+Habilita o rastreamento de packfiles enviados ou recebidos por um determinado programa. Ao contr\'e1rio de outras sa\'eddas de rastreamento, esse rastreamento \'e9 literal: sem cabe\'e7alhos e sem cita\'e7\'f5es de dados bin\'e1rios. Voc\'ea quase certamente deseja direcionar para um arquivo (por exemplo, GIT_TRACE_PACKFILE=/tmp/my.pack) em vez de exibi-lo no terminal ou mistur\'e1-lo com outra sa\'edda de rastreamento.\par
+\par
+Observe que atualmente isso \'e9 implementado apenas para o lado do cliente de clones e buscas.\par
+\par
+GIT_TRACE_PERFORMANCE\par
+Habilita mensagens de rastreamento relacionadas ao desempenho, por exemplo, tempo total de execu\'e7\'e3o de cada comando Git. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_REFS\par
+Habilita mensagens de rastreamento para opera\'e7\'f5es no banco de dados ref. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_SETUP\par
+Ativa as mensagens de rastreamento que imprimem o .git, a \'e1rvore de trabalho e o diret\'f3rio de trabalho atual ap\'f3s o Git ter conclu\'eddo sua fase de configura\'e7\'e3o. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_SHALLOW\par
+Habilita mensagens de rastreamento que podem ajudar na depura\'e7\'e3o, busca/clonagem de reposit\'f3rios rasos. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_CURL\par
+Permite um despejo de rastreamento completo de todos os dados de entrada e sa\'edda, incluindo informa\'e7\'f5es descritivas, do protocolo de transporte git. Isso \'e9 semelhante a fazer curl --trace-asciina linha de comando. Consulte GIT_TRACEas op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis.\par
+\par
+GIT_TRACE_CURL_NO_DATA\par
+Quando um rastreamento de curvatura estiver habilitado (veja GIT_TRACE_CURLacima), n\'e3o fa\'e7a dump de dados (ou seja, apenas dump de linhas de informa\'e7\'e3o e cabe\'e7alhos).\par
+\par
+GIT_TRACE2\par
+Habilita mensagens de rastreamento mais detalhadas da biblioteca "trace2". A sa\'edda de GIT_TRACE2\'e9 um formato simples baseado em texto para legibilidade humana.\par
+\par
+Se esta vari\'e1vel for definida como "1", "2" ou "verdadeiro" (a compara\'e7\'e3o n\'e3o diferencia mai\'fasculas de min\'fasculas), as mensagens de rastreamento ser\'e3o impressas em stderr.\par
+\par
+Se a vari\'e1vel for definida como um valor inteiro maior que 2 e menor que 10 (estritamente), o Git interpretar\'e1 esse valor como um descritor de arquivo aberto e tentar\'e1 gravar as mensagens de rastreamento nesse descritor de arquivo.\par
+\par
+Como alternativa, se a vari\'e1vel for definida como um caminho absoluto (come\'e7ando com um caractere / ), o Git interpretar\'e1 isso como um caminho de arquivo e tentar\'e1 anexar as mensagens de rastreamento a ele. Se o caminho j\'e1 existir e for um diret\'f3rio, as mensagens de rastreamento ser\'e3o gravadas em arquivos (um por processo) desse diret\'f3rio, nomeados de acordo com o \'faltimo componente do SID e um contador opcional (para evitar colis\'f5es de nome de arquivo).\par
+\par
+Al\'e9m disso, se a vari\'e1vel for definida como af_unix:[<socket_type>:]<absolute-pathname>, o Git tentar\'e1 abrir o caminho como um Unix Domain Socket. O tipo de soquete pode ser streamou dgram.\par
+\par
+Desativar a vari\'e1vel ou defini-la como vazia, "0" ou "falso" (sem distin\'e7\'e3o entre mai\'fasculas e min\'fasculas) desativa as mensagens de rastreamento.\par
+\par
+Consulte a documenta\'e7\'e3o do Trace2 para obter detalhes completos.\par
+\par
+GIT_TRACE2_EVENT\par
+Essa configura\'e7\'e3o grava um formato baseado em JSON adequado para interpreta\'e7\'e3o de m\'e1quina. Consulte GIT_TRACE2as op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis e a documenta\'e7\'e3o do Trace2 para obter detalhes completos.\par
+\par
+GIT_TRACE2_PERF\par
+Al\'e9m das mensagens baseadas em texto dispon\'edveis no GIT_TRACE2, essa configura\'e7\'e3o grava um formato baseado em coluna para entender as regi\'f5es de aninhamento. Consulte GIT_TRACE2as op\'e7\'f5es de sa\'edda de rastreamento dispon\'edveis e a documenta\'e7\'e3o do Trace2 para obter detalhes completos.\par
+\par
+GIT_TRACE_REDACT\par
+Por padr\'e3o, quando o rastreamento \'e9 ativado, o Git edita os valores dos cookies, o cabe\'e7alho "Authorization:", o cabe\'e7alho "Proxy-Authorization:" e os URIs do packfile. Defina essa vari\'e1vel de ambiente booleana como false para evitar essa reda\'e7\'e3o.\par
+\par
+GIT_LITERAL_PATHSPECS\par
+Definir essa vari\'e1vel de ambiente booleana como true far\'e1 com que o Git trate todos os pathspecs literalmente, em vez de padr\'f5es glob. Por exemplo, a execu\'e7\'e3o GIT_LITERAL_PATHSPECS=1 git log -- '*.c'procurar\'e1 por commits que tocam o path *.c, n\'e3o quaisquer caminhos que *.ccorrespondam ao glob. Voc\'ea pode querer isso se estiver alimentando caminhos literais para o Git (por exemplo, caminhos fornecidos anteriormente por git ls-tree, --rawdiff output, etc).\par
+\par
+GIT_GLOB_PATHSPECS\par
+Definir essa vari\'e1vel de ambiente booleana como true far\'e1 com que o Git trate todos os pathspecs como padr\'f5es glob (tamb\'e9m conhecido como m\'e1gica "glob").\par
+\par
+GIT_NOGLOB_PATHSPECS\par
+Definir essa vari\'e1vel de ambiente booleana como true far\'e1 com que o Git trate todos os pathspecs como literais (tamb\'e9m conhecido como m\'e1gica "literal").\par
+\par
+GIT_ICASE_PATHSPECS\par
+Definir essa vari\'e1vel de ambiente booleana como true far\'e1 com que o Git trate todos os pathspecs como n\'e3o diferenciando mai\'fasculas de min\'fasculas.\par
+\par
+GIT_REFLOG_ACTION\par
+Quando uma refer\'eancia \'e9 atualizada, entradas de reflog s\'e3o criadas para rastrear o motivo pelo qual a refer\'eancia foi atualizada (que normalmente \'e9 o nome do comando de alto n\'edvel que atualizou a refer\'eancia), al\'e9m dos valores novos e antigos da refer\'eancia . Um comando Porcelain com script pode usar a fun\'e7\'e3o auxiliar set_reflog_action para git-sh-setupdefinir seu nome para esta vari\'e1vel quando ela \'e9 invocada como o comando de n\'edvel superior pelo usu\'e1rio final, a ser registrado no corpo do reflog.\par
+\par
+GIT_REF_PARANOIA\par
+Se esta vari\'e1vel de ambiente booleana for definida como false, ignore as refer\'eancias quebradas ou com nomes incorretos ao iterar sobre listas de refer\'eancias. Normalmente, o Git tentar\'e1 incluir tais refer\'eancias, o que pode causar a falha de algumas opera\'e7\'f5es. Isso geralmente \'e9 prefer\'edvel, pois opera\'e7\'f5es potencialmente destrutivas (por exemplo, git-prune[1] ) s\'e3o melhores abortadas em vez de ignorar refer\'eancias quebradas (e, portanto, considerar o hist\'f3rico para o qual elas apontam como n\'e3o vale a pena salvar). O valor padr\'e3o \'e9 1(ou seja, seja paran\'f3ico sobre detectar e abortar todas as opera\'e7\'f5es). Voc\'ea normalmente n\'e3o precisa definir isso como 0, mas pode ser \'fatil ao tentar recuperar dados de um reposit\'f3rio corrompido.\par
+\par
+GIT_ALLOW_PROTOCOL\par
+Se definido como uma lista de protocolos separados por dois-pontos, comporte-se como se protocol.allowestivesse definido como never, e cada um dos protocolos listados fosse protocol.<name>.allowdefinido como always (substituindo qualquer configura\'e7\'e3o existente). Veja a descri\'e7\'e3o de protocol.allowem git-config[1] para mais detalhes.\par
+\par
+GIT_PROTOCOL_FROM_USER\par
+Defina esta vari\'e1vel de ambiente booleana como false para evitar protocolos usados \u8203?\u8203?por fetch/push/clone que s\'e3o configurados para o userestado. Isso \'e9 \'fatil para restringir a inicializa\'e7\'e3o recursiva do subm\'f3dulo de um reposit\'f3rio n\'e3o confi\'e1vel ou para programas que alimentam URLS potencialmente n\'e3o confi\'e1veis \u8203?\u8203?para comandos git. Veja git-config[1] para mais detalhes.\par
+\par
+GIT_PROTOCOL\par
+Apenas para uso interno. Usado em handshaking o protocolo de fio. Cont\'e9m dois pontos : lista separada de chaves com valores opcionais key[=value] . A presen\'e7a de chaves e valores desconhecidos deve ser ignorada.\par
+\par
+Observe que os servidores podem precisar ser configurados para permitir que essa vari\'e1vel passe por alguns transportes. Ele ser\'e1 propagado automaticamente ao acessar reposit\'f3rios locais (ou seja, {{\field{\*\fldinst{HYPERLINK file://ou }}{\fldrslt{file://ou\ul0\cf0}}}}\f0\fs22  um caminho de sistema de arquivos), bem como pelo git://protocolo. Para git-over-http, ele deve funcionar automaticamente na maioria das configura\'e7\'f5es, mas consulte a discuss\'e3o em git-http-backend[1] . Para git-over-ssh, o servidor ssh pode precisar ser configurado para permitir que os clientes passem esta vari\'e1vel (por exemplo, usando AcceptEnv GIT_PROTOCOLcom OpenSSH).\par
+\par
+Esta configura\'e7\'e3o \'e9 opcional. Se a vari\'e1vel n\'e3o for propagada, os clientes retornar\'e3o ao protocolo "v0" original (mas podem perder algumas melhorias ou recursos de desempenho). Esta vari\'e1vel atualmente afeta apenas clones e buscas; ainda n\'e3o \'e9 usado para pushes (mas pode ser no futuro).\par
+\par
+GIT_OPTIONAL_LOCKS\par
+Se essa vari\'e1vel de ambiente booleana for definida como falsa, o Git concluir\'e1 qualquer opera\'e7\'e3o solicitada sem executar nenhuma subopera\'e7\'e3o opcional que exija um bloqueio. Por exemplo, isso impedir\'e1 git statusa atualiza\'e7\'e3o do \'edndice como efeito colateral. Isso \'e9 \'fatil para processos executados em segundo plano que n\'e3o desejam causar conten\'e7\'e3o de bloqueio com outras opera\'e7\'f5es no reposit\'f3rio. O padr\'e3o \'e9 1.\par
+\par
+GIT_REDIRECT_STDIN\par
+GIT_REDIRECT_STDOUT\par
+GIT_REDIRECT_STDERR\par
+Somente Windows: permite redirecionar os manipuladores de entrada/sa\'edda/erro padr\'e3o para caminhos especificados pelas vari\'e1veis \u8203?\u8203?de ambiente. Isso \'e9 particularmente \'fatil em aplicativos multiencadeados em que a maneira can\'f4nica de passar identificadores padr\'e3o CreateProcess()n\'e3o \'e9 uma op\'e7\'e3o porque exigiria que os identificadores fossem marcados como herd\'e1veis \u8203?\u8203?(e, consequentemente, todos os processos gerados os herdariam, possivelmente bloqueando opera\'e7\'f5es regulares do Git). O principal caso de uso pretendido \'e9 usar pipes nomeados para comunica\'e7\'e3o (por exemplo {{\field{\*\fldinst{HYPERLINK "\\\\\\\\.\\\\pipe\\\\my-git-stdin-123"}}{\fldrslt{\\\\.\\pipe\\my-git-stdin-123\ul0\cf0}}}}\f0\fs22 , ).\par
+\par
+Dois valores especiais s\'e3o suportados: offsimplesmente fechar\'e1 o identificador padr\'e3o correspondente e, se GIT_REDIRECT_STDERRfor 2>&1, o erro padr\'e3o ser\'e1 redirecionado para o mesmo identificador da sa\'edda padr\'e3o.\par
+\par
+GIT_PRINT_SHA1_ELLIPSIS(descontinuada)\par
+Se definido como yes, imprima retic\'eancias ap\'f3s um valor SHA-1 (abreviado). Isso afeta as indica\'e7\'f5es de HEADs desanexados ( git-checkout[1] ) e a sa\'edda de diferen\'e7as brutas ( git-diff[1] ). A impress\'e3o de retic\'eancias nos casos mencionados n\'e3o \'e9 mais considerada adequada e o suporte para ela provavelmente ser\'e1 removido em um futuro previs\'edvel (junto com a vari\'e1vel).\par
+\par
+Discuss\'e3o\par
+Mais detalhes sobre o seguinte est\'e3o dispon\'edveis no cap\'edtulo de conceitos do Git do manual do usu\'e1rio e gitcore-tutorial[7] .\par
+\par
+Um projeto Git normalmente consiste em um diret\'f3rio de trabalho com um subdiret\'f3rio ".git" no n\'edvel superior. O diret\'f3rio .git cont\'e9m, entre outras coisas, um banco de dados de objetos compactados que representa o hist\'f3rico completo do projeto, um arquivo "index" que vincula esse hist\'f3rico ao conte\'fado atual da \'e1rvore de trabalho e ponteiros nomeados para esse hist\'f3rico, como tags e chefes de ramo.\par
+\par
+O banco de dados de objetos cont\'e9m objetos de tr\'eas tipos principais: blobs, que cont\'eam dados de arquivo; \'e1rvores, que apontam para blobs e outras \'e1rvores para construir hierarquias de diret\'f3rios; e commits, cada um referenciando uma \'fanica \'e1rvore e algum n\'famero de commits pais.\par
+\par
+O commit, equivalente ao que outros sistemas chamam de "changeset" ou "vers\'e3o", representa uma etapa no hist\'f3rico do projeto, e cada pai representa uma etapa imediatamente anterior. Commits com mais de um pai representam fus\'f5es de linhas independentes de desenvolvimento.\par
+\par
+Todos os objetos s\'e3o nomeados pelo hash SHA-1 de seu conte\'fado, normalmente escrito como uma string de 40 d\'edgitos hexadecimais. Esses nomes s\'e3o globalmente \'fanicos. Todo o hist\'f3rico que leva a um commit pode ser confirmado assinando apenas esse commit. Um quarto tipo de objeto, a tag, \'e9 fornecido para essa finalidade.\par
+\par
+Quando criados pela primeira vez, os objetos s\'e3o armazenados em arquivos individuais, mas, para maior efici\'eancia, podem ser compactados posteriormente em "arquivos compactados".\par
+\par
+Ponteiros nomeados chamados refs marcam pontos interessantes na hist\'f3ria. Uma refer\'eancia pode conter o nome SHA-1 de um objeto ou o nome de outra refer\'eancia. As refer\'eancias com nomes come\'e7ando ref/head/cont\'eam o nome SHA-1 do commit mais recente (ou "head") de uma ramifica\'e7\'e3o em desenvolvimento. Os nomes SHA-1 de tags de interesse s\'e3o armazenados em ref/tags/. Uma refer\'eancia especial chamada HEADcont\'e9m o nome da ramifica\'e7\'e3o com check-out no momento.\par
+\par
+O arquivo de \'edndice \'e9 inicializado com uma lista de todos os caminhos e, para cada caminho, um objeto blob e um conjunto de atributos. O objeto blob representa o conte\'fado do arquivo a partir do cabe\'e7alho da ramifica\'e7\'e3o atual. Os atributos (hora da \'faltima modifica\'e7\'e3o, tamanho, etc.) s\'e3o obtidos do arquivo correspondente na \'e1rvore de trabalho. Altera\'e7\'f5es subsequentes na \'e1rvore de trabalho podem ser encontradas comparando esses atributos. O \'edndice pode ser atualizado com novo conte\'fado e novos commits podem ser criados a partir do conte\'fado armazenado no \'edndice.\par
+\par
+O \'edndice tamb\'e9m \'e9 capaz de armazenar v\'e1rias entradas (chamadas de "est\'e1gios") para um determinado nome de caminho. Esses est\'e1gios s\'e3o usados \u8203?\u8203?para conter as v\'e1rias vers\'f5es n\'e3o mescladas de um arquivo quando uma mesclagem est\'e1 em andamento.\par
+\par
+DOCUMENTA\'c7\'c3O ADICIONAL\par
+Consulte as refer\'eancias na se\'e7\'e3o "descri\'e7\'e3o" para come\'e7ar a usar o Git. O seguinte \'e9 provavelmente mais detalhado do que o necess\'e1rio para um usu\'e1rio iniciante.\par
+\par
+O cap\'edtulo de conceitos do Git do manual do usu\'e1rio e o tutorial do gitcore[7] fornecem introdu\'e7\'f5es \'e0 arquitetura subjacente do Git.\par
+\par
+Consulte gitworkflows[7] para obter uma vis\'e3o geral dos fluxos de trabalho recomendados.\par
+\par
+Veja tamb\'e9m os documentos howto para alguns exemplos \'fateis.\par
+\par
+Os internos est\'e3o documentados na documenta\'e7\'e3o da API do Git .\par
+\par
+Usu\'e1rios migrando do CVS tamb\'e9m podem querer ler gitcvs-migration[7] .\par
+\par
+Autores\par
+O Git foi iniciado por Linus Torvalds e atualmente \'e9 mantido por Junio \u8203?\u8203?C Hamano. Numerosas contribui\'e7\'f5es vieram da lista de discuss\'e3o Git < git@vger.kernel.org >. {{\field{\*\fldinst{HYPERLINK http://www.openhub.net/p/git/contributors/summary }}{\fldrslt{http://www.openhub.net/p/git/contributors/summary\ul0\cf0}}}}\f0\fs22  fornece uma lista mais completa de contribuidores.\par
+\par
+Se voc\'ea tiver um clone do pr\'f3prio git.git, a sa\'edda de git-shortlog[1] e git-blame[1] pode mostrar os autores de partes espec\'edficas do projeto.\par
+\par
+Relatando erros\par
+Relate bugs para a lista de discuss\'e3o do Git < git@vger.kernel.org > onde o desenvolvimento e a manuten\'e7\'e3o s\'e3o feitos principalmente. Voc\'ea n\'e3o precisa estar inscrito na lista para enviar uma mensagem para l\'e1. Veja o arquivo da lista em {{\field{\*\fldinst{HYPERLINK https://lore.kernel.org/git }}{\fldrslt{https://lore.kernel.org/git\ul0\cf0}}}}\f0\fs22  para relat\'f3rios de bugs anteriores e outras discuss\'f5es.\par
+\par
+Os problemas relevantes para a seguran\'e7a devem ser divulgados em particular para a lista de discuss\'e3o do Git Security < git-security@googlegroups.com >.\par
+\par
+VEJA TAMB\'c9M\par
+gittutorial[7] , gittutorial-2[7] , giteveryday[7] , gitcvs-migration[7] , gitglossary[7] , gitcore-tutorial[7] , gitcli[7] , Manual do usu\'e1rio Git , gitworkflows[7]\par
+\par
+GIT\par
+Parte do pacote git[1]\par
+}
+ 
